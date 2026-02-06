@@ -1,30 +1,33 @@
 import { useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { getRoomById } from "@/data/roomData";
+// IMPORTANTE: Adicionamos getRoomByLabel na importação
+import { getRoomById, getRoomByLabel } from "@/data/roomData";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, ArrowDown } from "lucide-react";
-import { FaMapMarkerAlt } from "react-icons/fa"; // Removi FaInfoCircle pois não vamos usar
+import { FaMapMarkerAlt } from "react-icons/fa";
 
 const MapView = () => {
   const { roomId } = useParams();
   const navigate = useNavigate();
-  const room = getRoomById(Number(roomId));
+
+  // 1. A SALA SELECIONADA (Que o usuário clicou na lista)
+  const selectedRoom = getRoomById(Number(roomId));
 
   useEffect(() => {
     const timer = setTimeout(() => navigate("/"), 15000);
     return () => clearTimeout(timer);
   }, [navigate]);
 
-  if (!room) return <div className="min-h-screen bg-[#0a1120] flex items-center justify-center text-white">Sala não encontrada.</div>;
+  if (!selectedRoom) return <div className="min-h-screen bg-[#0a1120] flex items-center justify-center text-white">Sala não encontrada.</div>;
 
-  const isLadoEsquerdo = room.side === 'esquerdo';
-  const roomIdStr = room.id.toString().padStart(2, '0');
-  const floorLabel = room.floor === 1 ? "TÉRREO" : "SEGUNDO ANDAR";
-  const isSecondFloor = room.floor === 2;
+  const isLadoEsquerdo = selectedRoom.side === 'esquerdo';
+  const roomIdStr = selectedRoom.id.toString().padStart(2, '0');
+  const floorLabel = selectedRoom.floor === 1 ? "TÉRREO" : "SEGUNDO ANDAR";
+  const isSecondFloor = selectedRoom.floor === 2;
 
-  // --- LAYOUT DO GRID ---
+  // --- LAYOUT DO GRID (Estrutura visual das salas) ---
   const getVisualLayout = () => {
-    if (room.floor === 1) {
+    if (selectedRoom.floor === 1) {
       if (isLadoEsquerdo) {
         return {
           cols: 6,
@@ -43,6 +46,7 @@ const MapView = () => {
         };
       }
     } else {
+      // PISO 2
       if (isLadoEsquerdo) {
         return {
           cols: 5,
@@ -66,13 +70,14 @@ const MapView = () => {
   const layout = getVisualLayout();
   const totalCols = layout.cols;
 
-  // --- TRILHA ---
+  // --- TRILHA (Calcula a posição da linha vermelha) ---
   let targetCenterPercent = 0;
   let foundTarget = false;
 
   layout.rows.forEach(row => {
     let currentSpanCount = 0;
     row.forEach(cell => {
+      // A trilha aponta especificamente para a sala clicada (roomIdStr)
       if (cell.label === roomIdStr) {
         const centerInSpans = currentSpanCount + (cell.span / 2);
         targetCenterPercent = (centerInSpans / totalCols) * 100;
@@ -91,7 +96,7 @@ const MapView = () => {
     }
   }
 
-  // --- COLUNA DE INDICADORES (REUTILIZÁVEL) ---
+  // --- COMPONENTE DE INDICADORES (Marcador e Escada) ---
   const IndicatorsColumn = () => (
     <div className="flex flex-col items-center justify-center gap-10 min-w-[120px] md:min-w-[150px] z-20">
       
@@ -134,20 +139,21 @@ const MapView = () => {
       <div className="absolute top-0 left-0 h-1 bg-red-600/50 animate-[width_15s_linear_forwards] w-full" style={{ animationName: 'shrinkWidth' }} />
       
       <div className="w-full max-w-[1400px]">
+        {/* Botão Voltar */}
         <Button variant="ghost" onClick={() => navigate("/salas")} className="mb-6 gap-2 text-slate-400 hover:text-white transition-all">
           <ArrowLeft className="h-5 w-5" /> Voltar
         </Button>
 
+        {/* Título da Empresa */}
         <div className="mb-8">
           <h1 className="text-5xl md:text-7xl font-black uppercase tracking-tighter">
-            {room.company}
+            {selectedRoom.company}
           </h1>
           <p className="text-blue-400 font-mono text-xl mt-1 tracking-widest uppercase opacity-80">
-            {floorLabel} — Lado {room.side}
+            {floorLabel} — Lado {selectedRoom.side}
           </p>
         </div>
 
-        {/* ALTERADO: GRID AGORA TEM O SIDEBAR CENTRALIZADO */}
         <div className="grid lg:grid-cols-4 gap-8">
           
           {/* CONTAINER DO MAPA */}
@@ -163,7 +169,17 @@ const MapView = () => {
                 {layout.rows.map((row, rowIdx) => (
                   <div key={rowIdx} className="contents">
                     {row.map((cell, colIdx) => {
-                      const isTarget = cell.label === roomIdStr;
+                      
+                      // --- LÓGICA DE MULTI-HIGHLIGHT ---
+                      // 1. Buscamos os dados da sala atual do loop
+                      const cellRoomData = getRoomByLabel(cell.label);
+                      
+                      // 2. Verificamos se ela pertence à mesma empresa da sala selecionada
+                      const isSameCompany = selectedRoom && cellRoomData && selectedRoom.company === cellRoomData.company;
+
+                      // 3. O alvo é marcado se for a sala clicada OU se for da mesma empresa
+                      const isTarget = cell.label === roomIdStr || (isSameCompany && cell.type === 'room');
+                      
                       const isService = cell.type === 'service';
                       const isEmpty = cell.type === 'empty';
 
@@ -205,16 +221,12 @@ const MapView = () => {
             </div>
           </div>
 
-          {/* PAINEL LATERAL REDESENHADO */}
+          {/* PAINEL LATERAL (Instruções) */}
           <div className="h-full">
             <div className="bg-[#161f31] p-8 rounded-3xl border border-white/5 shadow-xl h-full flex flex-col items-center justify-center text-center gap-6 animate-fade-left">
-              
-              {/* Ícone de Destaque */}
               <div className="w-20 h-20 bg-blue-500/10 rounded-full flex items-center justify-center shadow-[0_0_30px_rgba(59,130,246,0.2)]">
                 <FaMapMarkerAlt className="text-blue-400" size={32} />
               </div>
-
-              {/* Texto de Orientação */}
               <div>
                 <h3 className="text-blue-400 text-xs uppercase font-bold tracking-[0.2em] mb-4">
                   Como Chegar
@@ -223,7 +235,6 @@ const MapView = () => {
                   Siga a <strong className="text-white font-bold">linha pontilhada</strong> no mapa até o local destacado em <strong className="text-red-500 font-bold">vermelho</strong>.
                 </p>
               </div>
-
             </div>
           </div>
 

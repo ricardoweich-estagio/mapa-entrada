@@ -1,5 +1,7 @@
 // src/data/roomData.ts
 
+export type RoomCategory = 'Smcti' | 'Startup Itec' | 'UTFPR' | 'Startup Sprint';
+
 export interface RoomInfo {
   id: number;
   floor: number;
@@ -7,163 +9,169 @@ export interface RoomInfo {
   mapImage: string;
   position: { row: number; col: number };
   company?: string;
-  description?: string;
+  category?: RoomCategory; // Campo Novo
 }
 
 export const roomData: RoomInfo[] = [
   // --- PISO 1: LADO ESQUERDO (01-09) ---
   { 
     id: 1, floor: 1, side: 'esquerdo', mapImage: 'piso1-esquerdo', position: { row: 1, col: 1 }, 
-    company: 'Robótica'
+    company: 'Robótica', category: 'Smcti' 
   },
   { 
     id: 2, floor: 1, side: 'esquerdo', mapImage: 'piso1-esquerdo', position: { row: 0, col: 1 }, 
-    company: 'Its Art Up'
+    company: 'Its Art Up', category: 'Startup Itec' 
   },
   { 
     id: 3, floor: 1, side: 'esquerdo', mapImage: 'piso1-esquerdo', position: { row: 1, col: 2 }, 
-    company: 'Flatland Lab'
+    company: 'Flatland Lab', category: 'Startup Itec' 
   },
   { 
     id: 4, floor: 1, side: 'esquerdo', mapImage: 'piso1-esquerdo', position: { row: 0, col: 2 }, 
-    company: 'Sprint'
+    company: 'Sprint', category: 'UTFPR' 
   },
   { 
     id: 5, floor: 1, side: 'esquerdo', mapImage: 'piso1-esquerdo', position: { row: 1, col: 3 }, 
-    company: 'Fazenda Melhor'
+    company: 'Fazenda Melhor', category: 'Startup Itec' 
   },
   { 
     id: 6, floor: 1, side: 'esquerdo', mapImage: 'piso1-esquerdo', position: { row: 0, col: 3 }, 
-    company: 'Pesquisa e Des.'
+    company: 'Pesquisa e Des.', category: 'Smcti' 
   },
   { 
     id: 7, floor: 1, side: 'esquerdo', mapImage: 'piso1-esquerdo', position: { row: 1, col: 4 }, 
-    company: 'Laboratório 3D'
+    company: 'Laboratório 3D', category: 'Smcti' 
   },
   { 
     id: 8, floor: 1, side: 'esquerdo', mapImage: 'piso1-esquerdo', position: { row: 0, col: 4 }, 
-    company: 'Projetos de Inovação'
+    company: 'Projetos de Inovação', category: 'Smcti' 
   },
   { 
     id: 9, floor: 1, side: 'esquerdo', mapImage: 'piso1-esquerdo', position: { row: 1, col: 5 }, 
-    company: 'Coworking'
+    company: 'Coworking', category: 'Smcti' 
   },
 
   // --- PISO 1: LADO DIREITO (10-18) ---
   { 
     id: 10, floor: 1, side: 'direito', mapImage: 'piso1-direito', position: { row: 0, col: 0 }, 
-    company: 'Cash Local'
+    company: 'Cash Local', category: 'Startup Itec' 
   },
   { 
     id: 11, floor: 1, side: 'direito', mapImage: 'piso1-direito', position: { row: 1, col: 0 }, 
-    company: 'ITECPB'
+    company: 'ITECPB', category: 'Smcti' 
   },
   { 
     id: 12, floor: 1, side: 'direito', mapImage: 'piso1-direito', position: { row: 0, col: 1 }, 
-    company: 'pHbot'
+    company: 'pHbot', category: 'Startup Itec' 
   },
   { 
     id: 13, floor: 1, side: 'direito', mapImage: 'piso1-direito', position: { row: 1, col: 1 }, 
-    company: 'Noctua'
+    company: 'Noctua', category: 'Startup Itec' 
   },
   { 
     id: 14, floor: 1, side: 'direito', mapImage: 'piso1-direito', position: { row: 0, col: 2 }, 
-    company: 'Velocidade'
+    company: 'Velocidade', category: 'Startup Itec' 
   },
   { 
     id: 15, floor: 1, side: 'direito', mapImage: 'piso1-direito', position: { row: 1, col: 2 }, 
-    company: 'Pato a Jato'
+    company: 'Pato a Jato', category: 'UTFPR' 
   },
   { 
     id: 16, floor: 1, side: 'direito', mapImage: 'piso1-direito', position: { row: 0, col: 3 }, 
-    company: 'Lef Tech'
+    company: 'Lef Tech', category: 'Startup Itec' 
   },
   { 
     id: 17, floor: 1, side: 'direito', mapImage: 'piso1-direito', position: { row: 1, col: 3 }, 
-    company: 'DCT Tecnologia'
+    company: 'DCT Tecnologia', category: 'Startup Itec' 
   },
   { 
     id: 18, floor: 1, side: 'direito', mapImage: 'piso1-direito', position: { row: 1, col: 4 }, 
-    company: 'Lef Tech'
+    company: 'Lef Tech', category: 'Startup Itec' 
   },
 
   // --- PISO 2: LADO ESQUERDO (19-27) ---
   { 
     id: 19, floor: 2, side: 'esquerdo', mapImage: 'piso2-esquerdo', position: { row: 1, col: 1 }, 
-    company: 'Safe Educa'
+    company: 'Safe Educa', category: 'Startup Itec' 
   },
   { 
     id: 20, floor: 2, side: 'esquerdo', mapImage: 'piso2-esquerdo', position: { row: 0, col: 1 }, 
-    company: 'Climb'
+    company: 'Climb', category: 'Startup Itec' 
   },
   { 
     id: 21, floor: 2, side: 'esquerdo', mapImage: 'piso2-esquerdo', position: { row: 1, col: 2 }, 
-    company: 'Conseguisse'
+    company: 'Conseguisse', category: 'Startup Itec' 
   },
   { 
     id: 22, floor: 2, side: 'esquerdo', mapImage: 'piso2-esquerdo', position: { row: 0, col: 2 }, 
-    company: 'Flumia Flow'
+    company: 'Flumia Flow', category: 'Startup Itec' 
   },
   { 
     id: 23, floor: 2, side: 'esquerdo', mapImage: 'piso2-esquerdo', position: { row: 1, col: 3 }, 
-    company: 'Raziel Labs'
+    company: 'Raziel Labs', category: 'Startup Itec' 
   },
   { 
     id: 24, floor: 2, side: 'esquerdo', mapImage: 'piso2-esquerdo', position: { row: 0, col: 3 }, 
-    company: 'E-dialoga'
+    company: 'E-dialoga', category: 'Startup Itec' 
   },
   { 
     id: 25, floor: 2, side: 'esquerdo', mapImage: 'piso2-esquerdo', position: { row: 1, col: 4 }, 
-    company: 'Tas'
+    company: 'Tas', category: 'Startup Itec' 
   },
   { 
     id: 26, floor: 2, side: 'esquerdo', mapImage: 'piso2-esquerdo', position: { row: 0, col: 4 }, 
-    company: 'Rock Jobs'
+    company: 'Rock Jobs', category: 'Startup Itec' 
   },
   { 
     id: 27, floor: 2, side: 'esquerdo', mapImage: 'piso2-esquerdo', position: { row: 1, col: 5 }, 
-    company: 'Rock Jobs'
+    company: 'Rock Jobs', category: 'Startup Itec' 
   },
 
   // --- PISO 2: LADO DIREITO (28-36) ---
   { 
     id: 28, floor: 2, side: 'direito', mapImage: 'piso2-direito', position: { row: 0, col: 0 }, 
-    company: 'Real World Agronomy'
+    company: 'Real World Agronomy', category: 'Startup Sprint' 
   },
   { 
     id: 29, floor: 2, side: 'direito', mapImage: 'piso2-direito', position: { row: 1, col: 0 }, 
-    company: 'Arrende'
+    company: 'Arrende', category: 'Startup Sprint' 
   },
   { 
     id: 30, floor: 2, side: 'direito', mapImage: 'piso2-direito', position: { row: 0, col: 1 }, 
-    company: 'Luferan'
+    company: 'Luferan', category: 'Startup Sprint' 
   },
   { 
     id: 31, floor: 2, side: 'direito', mapImage: 'piso2-direito', position: { row: 1, col: 1 }, 
-    company: 'Plasma Fert'
+    company: 'Plasma Fert', category: 'Startup Sprint' 
   },
   { 
     id: 32, floor: 2, side: 'direito', mapImage: 'piso2-direito', position: { row: 0, col: 2 }, 
-    company: 'Utopia Decorações'
+    company: 'Utopia Decorações', category: 'Startup Sprint' 
   },
   { 
     id: 33, floor: 2, side: 'direito', mapImage: 'piso2-direito', position: { row: 1, col: 2 }, 
-    company: 'ZipTo Innovate'
+    company: 'ZipTo Innovate', category: 'Startup Sprint' 
   },
   { 
     id: 34, floor: 2, side: 'direito', mapImage: 'piso2-direito', position: { row: 0, col: 3 }, 
-    company: 'Geoponica'
+    company: 'Geoponica', category: 'Startup Sprint' 
   },
   { 
     id: 35, floor: 2, side: 'direito', mapImage: 'piso2-direito', position: { row: 1, col: 3 }, 
-    company: 'OnProcess / EcoWatts'
+    company: 'OnProcess / EcoWatts', category: 'Startup Sprint' 
   },
   { 
     id: 36, floor: 2, side: 'direito', mapImage: 'piso2-direito', position: { row: 1, col: 4 }, 
-    company: 'Servidor Parque'
+    company: 'Servidor Parque', category: 'Smcti' 
   },
 ];
 
 export const getRoomById = (id: number): RoomInfo | undefined => {
+  return roomData.find(room => room.id === id);
+};
+
+export const getRoomByLabel = (label: string): RoomInfo | undefined => {
+  const id = Number(label);
+  if (isNaN(id)) return undefined;
   return roomData.find(room => room.id === id);
 };

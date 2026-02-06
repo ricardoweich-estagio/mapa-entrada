@@ -19,7 +19,7 @@ const Welcome = () => {
         
         {/* Logos */}
         <div className="bg-white/5 backdrop-blur-md border border-white/10 p-8 rounded-3xl w-full flex items-center justify-center gap-6 animate-fade-down shadow-2xl">
-          <img src={parqueLogo} alt="Logo Parque" className="h-16 md:h-20 w-auto object-contain rounded-md bg-white/90 p-1" />
+          <img src={parqueLogo} alt="Logo Parque" className="h-16 md:h-20 w-auto object-contain rounded-md p-1" />
           <div className="w-[1px] h-12 bg-white/20" /> 
           <img src={itecpbLogo} alt="Logo ITECPB" className="h-12 md:h-16 w-auto object-contain" />
         </div>
@@ -46,7 +46,7 @@ const Welcome = () => {
             onClick={() => navigate("/salas")}
             className="w-full h-16 text-xl font-bold bg-red-600 hover:bg-red-700 text-white rounded-2xl shadow-[0_0_30px_rgba(220,38,38,0.4)] transition-all duration-300 border border-red-500/50"
           >
-            <span className="mr-3">Iniciar Navegação Interna</span>
+            <span className="mr-3">Procurar Sala</span>
             <ArrowRight className="w-6 h-6" />
           </Button>
 

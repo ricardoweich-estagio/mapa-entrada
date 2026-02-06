@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { roomData } from "@/data/roomData";
+import { roomData, RoomCategory } from "@/data/roomData";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ArrowLeft, Search, Building2 } from "lucide-react";
@@ -9,7 +9,6 @@ const RoomList = () => {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
 
-  // Filtra as salas (exclui banheiros/cozinhas da lista clicável)
   const filteredRooms = roomData.filter((room) => {
     const isCommercial = room.company && room.company !== "Banheiros" && room.company !== "Cozinha";
     const matchesSearch = room.company?.toLowerCase().includes(searchTerm.toLowerCase()) || 
@@ -17,8 +16,23 @@ const RoomList = () => {
     return isCommercial && matchesSearch;
   });
 
+  // --- FUNÇÃO DE CORES DAS TAGS ---
+  const getCategoryColor = (category?: RoomCategory) => {
+    switch (category) {
+      case 'Smcti':
+        return 'bg-cyan-500/20 text-cyan-300 border-cyan-500/30';
+      case 'Startup Itec':
+        return 'bg-indigo-500/20 text-indigo-300 border-indigo-500/30';
+      case 'UTFPR':
+        return 'bg-amber-500/20 text-amber-300 border-amber-500/30';
+      case 'Startup Sprint':
+        return 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30';
+      default:
+        return 'bg-slate-800 text-slate-400 border-slate-700';
+    }
+  };
+
   return (
-    // WRAPPER PRINCIPAL: Centraliza na TV/Monitor, rola no celular
     <div className="min-h-screen w-full flex items-center justify-center bg-[#0a1120] p-6 animate-fade-in">
       <div className="w-full max-w-6xl h-full flex flex-col gap-8">
         
@@ -34,7 +48,6 @@ const RoomList = () => {
             <p className="text-blue-400 mt-1">Toque na empresa ou número da sala</p>
           </div>
 
-          {/* Barra de Busca */}
           <div className="relative w-full md:w-96">
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 w-5 h-5" />
             <Input 
@@ -52,17 +65,27 @@ const RoomList = () => {
             <button
               key={room.id}
               onClick={() => navigate(`/mapa/${room.id}`)}
-              className="group flex flex-col items-start p-6 bg-[#0f172a] border border-slate-800 hover:border-blue-500 hover:bg-blue-500/10 rounded-2xl transition-all duration-300 text-left"
+              className="group flex flex-col items-start p-6 bg-[#0f172a] border border-slate-800 hover:border-blue-500 hover:bg-blue-500/10 rounded-2xl transition-all duration-300 text-left relative overflow-hidden"
             >
-              <div className="w-full flex justify-between items-start mb-4">
+              {/* TAG DE CATEGORIA (NOVA) */}
+              {room.category && (
+                <div className={`absolute top-4 right-4 px-2 py-1 rounded-md border text-[10px] font-bold uppercase tracking-wider ${getCategoryColor(room.category)}`}>
+                  {room.category}
+                </div>
+              )}
+
+              <div className="w-full flex justify-between items-start mb-4 mt-2">
                 <span className="text-3xl font-black text-slate-600 group-hover:text-blue-400 transition-colors">
                   {room.id.toString().padStart(2, '0')}
                 </span>
-                <Building2 className="w-6 h-6 text-slate-700 group-hover:text-blue-400" />
+                {/* Ícone opcional, se quiser manter ou tirar */}
+                {/* <Building2 className="w-6 h-6 text-slate-700 group-hover:text-blue-400" /> */}
               </div>
-              <h3 className="text-white font-bold text-lg leading-tight group-hover:translate-x-1 transition-transform">
+              
+              <h3 className="text-white font-bold text-lg leading-tight group-hover:translate-x-1 transition-transform pr-2">
                 {room.company}
               </h3>
+              
               <p className="text-slate-500 text-xs mt-2 uppercase tracking-wider">
                 {room.floor === 1 ? "Térreo" : "2º Andar"} • Lado {room.side}
               </p>
