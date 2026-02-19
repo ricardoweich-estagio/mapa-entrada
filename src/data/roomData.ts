@@ -9,7 +9,8 @@ export interface RoomInfo {
   mapImage: string;
   position: { row: number; col: number };
   company?: string;
-  category?: RoomCategory; // Campo Novo
+  category?: RoomCategory;
+  owner?: string; // Novo campo para o nome do responsável
 }
 
 export const roomData: RoomInfo[] = [
@@ -20,31 +21,38 @@ export const roomData: RoomInfo[] = [
   },
   { 
     id: 2, floor: 1, side: 'esquerdo', mapImage: 'piso1-esquerdo', position: { row: 0, col: 1 }, 
-    company: 'Its Art Up', category: 'Startup Itec' 
+    company: 'Its Art Up', category: 'Startup Itec',
+    owner: 'Jessana Priscila M. de A. Gonçalves' // Adicionado
   },
   { 
     id: 3, floor: 1, side: 'esquerdo', mapImage: 'piso1-esquerdo', position: { row: 1, col: 2 }, 
-    company: 'Flatland Lab', category: 'Startup Itec' 
+    company: 'Flatland Lab', category: 'Startup Itec',
+    owner: 'Bruno Leme' // Adicionado
   },
   { 
     id: 4, floor: 1, side: 'esquerdo', mapImage: 'piso1-esquerdo', position: { row: 0, col: 2 }, 
-    company: 'Sprint', category: 'UTFPR' 
+    company: 'Sprint', category: 'UTFPR',
+    owner: 'Rosiclei Caldato'  
   },
   { 
     id: 5, floor: 1, side: 'esquerdo', mapImage: 'piso1-esquerdo', position: { row: 1, col: 3 }, 
-    company: 'Fazenda Melhor', category: 'Startup Itec' 
+    company: 'Fazenda Melhor', category: 'Startup Itec',
+    owner: 'Felipe Gustavo Loff' // Adicionado
   },
   { 
     id: 6, floor: 1, side: 'esquerdo', mapImage: 'piso1-esquerdo', position: { row: 0, col: 3 }, 
-    company: 'Pesquisa e Des.', category: 'Smcti' 
+    company: 'Pesquisa e Des.', category: 'Smcti',
+    owner: 'Grazieli & Helmuth' 
   },
   { 
     id: 7, floor: 1, side: 'esquerdo', mapImage: 'piso1-esquerdo', position: { row: 1, col: 4 }, 
-    company: 'Laboratório 3D', category: 'Smcti' 
+    company: 'Laboratório 3D', category: 'Smcti',
+    owner: 'Ana L. Maieski'  
   },
   { 
     id: 8, floor: 1, side: 'esquerdo', mapImage: 'piso1-esquerdo', position: { row: 0, col: 4 }, 
-    company: 'Projetos de Inovação', category: 'Smcti' 
+    company: 'Projetos de Inovação', category: 'Smcti',
+    owner: 'Rosiclei Caldato'  
   },
   { 
     id: 9, floor: 1, side: 'esquerdo', mapImage: 'piso1-esquerdo', position: { row: 1, col: 5 }, 
@@ -54,23 +62,28 @@ export const roomData: RoomInfo[] = [
   // --- PISO 1: LADO DIREITO (10-18) ---
   { 
     id: 10, floor: 1, side: 'direito', mapImage: 'piso1-direito', position: { row: 0, col: 0 }, 
-    company: 'Cash Local', category: 'Startup Itec' 
+    company: 'Cash Local', category: 'Startup Itec',
+    owner:'Bruna Jochem & Thiarles Prado' 
   },
   { 
     id: 11, floor: 1, side: 'direito', mapImage: 'piso1-direito', position: { row: 1, col: 0 }, 
-    company: 'ITECPB', category: 'Smcti' 
+    company: 'ITECPB', category: 'Smcti',
+    owner: 'Ana M. & Nelito'  
   },
   { 
     id: 12, floor: 1, side: 'direito', mapImage: 'piso1-direito', position: { row: 0, col: 1 }, 
-    company: 'pHbot', category: 'Startup Itec' 
+    company: 'pHbot', category: 'Startup Itec',
+    owner: 'João Carlos Fagundes' // Adicionado
   },
   { 
     id: 13, floor: 1, side: 'direito', mapImage: 'piso1-direito', position: { row: 1, col: 1 }, 
-    company: 'Noctua', category: 'Startup Itec' 
+    company: 'Noctua', category: 'Startup Itec',
+    owner: 'Luiz Eduardo Caldas Kramer' // Adicionado
   },
   { 
     id: 14, floor: 1, side: 'direito', mapImage: 'piso1-direito', position: { row: 0, col: 2 }, 
-    company: 'Velocidade', category: 'Startup Itec' 
+    company: 'Velocidade', category: 'Startup Itec',
+    owner: 'Heron Willian Berton' // (Veloxi) Adicionado
   },
   { 
     id: 15, floor: 1, side: 'direito', mapImage: 'piso1-direito', position: { row: 1, col: 2 }, 
@@ -78,7 +91,8 @@ export const roomData: RoomInfo[] = [
   },
   { 
     id: 16, floor: 1, side: 'direito', mapImage: 'piso1-direito', position: { row: 0, col: 3 }, 
-    company: 'Lef Tech', category: 'Startup Itec' 
+    company: 'LefTech', category: 'Startup Itec',
+    owner:'Bruno Lefchak' 
   },
   { 
     id: 17, floor: 1, side: 'direito', mapImage: 'piso1-direito', position: { row: 1, col: 3 }, 
@@ -86,33 +100,40 @@ export const roomData: RoomInfo[] = [
   },
   { 
     id: 18, floor: 1, side: 'direito', mapImage: 'piso1-direito', position: { row: 1, col: 4 }, 
-    company: 'Lef Tech', category: 'Startup Itec' 
+    company: 'LefTech', category: 'Startup Itec',
+    owner:'Bruno Lefchak'  
   },
 
   // --- PISO 2: LADO ESQUERDO (19-27) ---
   { 
     id: 19, floor: 2, side: 'esquerdo', mapImage: 'piso2-esquerdo', position: { row: 1, col: 1 }, 
-    company: 'Safe Educa', category: 'Startup Itec' 
+    company: 'Safe Educa', category: 'Startup Itec',
+    owner:'Pedro H. B. Coelho' 
   },
   { 
     id: 20, floor: 2, side: 'esquerdo', mapImage: 'piso2-esquerdo', position: { row: 0, col: 1 }, 
-    company: 'Climb', category: 'Startup Itec' 
+    company: 'Climb', category: 'Startup Itec',
+    owner: 'Samuel Judá Batiston' // Adicionado
   },
   { 
     id: 21, floor: 2, side: 'esquerdo', mapImage: 'piso2-esquerdo', position: { row: 1, col: 2 }, 
-    company: 'Conseguisse', category: 'Startup Itec' 
+    company: 'Consegsys', category: 'Startup Itec',
+     owner:'Alex Carpenedo'
   },
   { 
     id: 22, floor: 2, side: 'esquerdo', mapImage: 'piso2-esquerdo', position: { row: 0, col: 2 }, 
-    company: 'Flumia Flow', category: 'Startup Itec' 
+    company: 'Flumia Flow', category: 'Startup Itec',
+    owner: 'Luiz Felipe Beatrice' // Adicionado
   },
   { 
     id: 23, floor: 2, side: 'esquerdo', mapImage: 'piso2-esquerdo', position: { row: 1, col: 3 }, 
-    company: 'Raziel Labs', category: 'Startup Itec' 
+    company: 'Raziel Labs', category: 'Startup Itec',
+    owner: 'Muriel Mazzetto' // Adicionado
   },
   { 
     id: 24, floor: 2, side: 'esquerdo', mapImage: 'piso2-esquerdo', position: { row: 0, col: 3 }, 
-    company: 'E-dialoga', category: 'Startup Itec' 
+    company: 'E-dialoga', category: 'Startup Itec',
+    owner: 'Paulo Henrique Silvestre' // Adicionado
   },
   { 
     id: 25, floor: 2, side: 'esquerdo', mapImage: 'piso2-esquerdo', position: { row: 1, col: 4 }, 
