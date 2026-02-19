@@ -32,7 +32,7 @@ export const roomData: RoomInfo[] = [
   { 
     id: 4, floor: 1, side: 'esquerdo', mapImage: 'piso1-esquerdo', position: { row: 0, col: 2 }, 
     company: 'Sprint', category: 'UTFPR',
-    owner: 'Rosiclei Caldato'  
+    owner: 'Shirley Suellen Thesari'  
   },
   { 
     id: 5, floor: 1, side: 'esquerdo', mapImage: 'piso1-esquerdo', position: { row: 1, col: 3 }, 
