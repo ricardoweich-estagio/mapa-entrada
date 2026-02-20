@@ -8,8 +8,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Welcome from "./pages/Welcome";
 import RoomList from "./pages/RoomList";
 import MapView from "./pages/MapView";
-import AnchorList from "./pages/AnchorList"; // <--- Novo
-import AnchorMap from "./pages/AnchorMap";   // <--- Novo
+import AnchorList from "./pages/AnchorList";
+import AnchorMap from "./pages/AnchorMap";
+import PersonList from "./pages/personlist"; // <--- Novo Import
 
 const queryClient = new QueryClient();
 
@@ -20,17 +21,19 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Routes>
-          {/* Rota Inicial (Tela de Boas-Vindas) */}
+          {/* Tela Inicial */}
           <Route path="/" element={<Welcome />} />
 
-          {/* Rotas das Salas Internas */}
+          {/* Diretório de Pessoas (Novo) */}
+          <Route path="/pessoas" element={<PersonList />} />
+
+          {/* Incubadas */}
           <Route path="/salas" element={<RoomList />} />
           <Route path="/mapa/:roomId" element={<MapView />} />
 
-          {/* NOVAS ROTAS: Empresas Âncoras (Externas) */}
+          {/* Âncoras */}
           <Route path="/ancoras" element={<AnchorList />} />
           <Route path="/mapa-ancora/:anchorId" element={<AnchorMap />} />
-          
         </Routes>
       </BrowserRouter>
     </TooltipProvider>
