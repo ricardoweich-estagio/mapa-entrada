@@ -62,7 +62,7 @@ export const roomData: RoomInfo[] = [
   },
   { 
     id: 12, floor: 1, side: 'direito', mapImage: 'piso1-direito', position: { row: 0, col: 1 }, 
-    company: 'pHbot', category: 'Startup Itec'
+    company: 'PhBot', category: 'Startup Itec'
   },
   { 
     id: 13, floor: 1, side: 'direito', mapImage: 'piso1-direito', position: { row: 1, col: 1 }, 
@@ -70,7 +70,7 @@ export const roomData: RoomInfo[] = [
   },
   { 
     id: 14, floor: 1, side: 'direito', mapImage: 'piso1-direito', position: { row: 0, col: 2 }, 
-    company: 'Velocidade', category: 'Startup Itec'
+    company: 'Veloxi', category: 'Startup Itec'
   },
   { 
     id: 15, floor: 1, side: 'direito', mapImage: 'piso1-direito', position: { row: 1, col: 2 }, 

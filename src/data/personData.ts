@@ -87,9 +87,9 @@ export const personData: PersonInfo[] = [
   { id: 38, name: "Samuel Judá Batiston", company: "Climb", roomId: 20 },
 
   // --- VELOXI / VELOCIDADE (Sala 14) ---
-  { id: 39, name: "Matheus Dall olmo", company: "Velocidade (Veloxi)", roomId: 14 },
-  { id: 40, name: "Samuel Grontoski", company: "Velocidade (Veloxi)", roomId: 14 },
-  { id: 41, name: "Heron Willian Berton", company: "Velocidade (Veloxi)", roomId: 14 },
+  { id: 39, name: "Matheus Dall olmo", company: "Veloxi", roomId: 14 },
+  { id: 40, name: "Samuel Grontoski", company: "Veloxi", roomId: 14 },
+  { id: 41, name: "Heron Willian Berton", company: "Veloxi", roomId: 14 },
 
   // --- FLATLAND LAB (Sala 03) ---
   { id: 42, name: "Bruno Leme", company: "Flatland Lab", roomId: 3 },
@@ -98,7 +98,7 @@ export const personData: PersonInfo[] = [
   { id: 43, name: "Luiz Felipe Beatrice", company: "Flumia Flow", roomId: 22 },
 
   // --- PHBOT (Sala 12) ---
-  { id: 44, name: "João Carlos Fagundes", company: "pHbot", roomId: 12 },
+  { id: 44, name: "João Carlos Fagundes", company: "PhBot", roomId: 12 },
 
   // --- ECOTROCA / ECOWATTS / ONPROCESS (Sala 35) ---
   { id: 45, name: "Lucas Fernando Puhl", company: "EcoWatts / Ecotroca", roomId: 35 },
